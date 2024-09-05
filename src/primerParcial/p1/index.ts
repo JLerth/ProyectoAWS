@@ -1,0 +1,1 @@
+export {IClientes, IProductos, cliente, producto} from './gastosDiarios'

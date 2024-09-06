@@ -37,7 +37,7 @@ import {fetchData, IPost} from './primerParcial/p1/post';
 // main()
 
 //--------------------------Servicio Rest------------------------------------------------
-// fetchData<IPost>('https://jsonplaceholder.typicode.com/posts')
+// fetchData<IPost>('https://pokeapi.co/api/v2/pokemon/ditto')
 //     .then(posts => {
 //         console.log(posts);
 //     })

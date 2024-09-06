@@ -1,1 +1,6 @@
-export {IClientes, IProductos, cliente, producto} from './gastosDiarios'
+export {IClientes, IGastos, cliente} from './gastosDiarios'
+export {recorrer} from './recorrer'
+export {busquedaCliente} from './callback'
+export {busquedaClientePromise} from './promises'
+export {busquedaClienteAsync} from './async'
+export {fetchData, IPost} from './post'

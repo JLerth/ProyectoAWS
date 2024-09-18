@@ -1,20 +1,40 @@
 import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
+import { MikroORM } from '@mikro-orm/core';
+import  MikroOrmConfig from "./mikro-orm"
+import { Cliente } from "./entity/Cliente"
+import { crearCliente } from "./models/crearCliente";
+import { consultarClienteId, consultarClienteIdentificacion } from "./models/ConsultarCliente";
+import { eliminarCliente } from "./models/eliminarCliente";
+import { modificarCliente } from "./models/modificarCliente";
 
+//Se esta trabajando con Xampp como base de datos local. 
 AppDataSource.initialize().then(async () => {
+    console.log("Base de datos inicializada correctamente");
 
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.firstName = "Timber"
-    user.lastName = "Saw"
-    user.age = 25
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
+    // Crear un nuevo cliente
+    // await crearCliente("J", "123456789");
 
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
+    // Consultar cliente por ID
+    // await consultarClienteId(1); 
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+    // Consultar cliente por identificación
+    // await consultarClienteIdentificacion("123456789");
 
-}).catch(error => console.log(error))
+    // console.log("Here you can setup and run express / fastify / any other framework.")
+
+}).catch(error => console.log(error));
+
+
+//---------------------------No se cual es el fallo con el MikroORM aaaaaaaaaaaaa-----------------------
+async function main() {
+    const orm = await MikroORM.init(MikroOrmConfig);
+    const em = orm.em;
+
+    // Modificar un cliente
+    // await modificarCliente(em, 1, "Nuevo Nombre", "Nueva Identificacion");
+
+    // Eliminar un cliente
+    // await eliminarCliente(em, 1);
+}
+
+// main();

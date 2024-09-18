@@ -1,18 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
+
 @Entity()
-export class User {
+export class Cliente {
 
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
-    firstName: string
+    nombre: string
 
     @Column()
-    lastName: string
-
-    @Column()
-    age: number
+    identificacion: string
 
 }

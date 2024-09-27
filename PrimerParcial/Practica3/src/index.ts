@@ -13,10 +13,11 @@ app.use(server.json());
 AppDataSource.initialize()
     .then(() => {
         console.log("Base de datos inicializada correctamente");
-        
+
+        // // Descomentar las entidades
         // app.use('/clientes', routerCliente);
         // app.use('/conceptos', routerConcepto);
-        // app.use('/gastos', routerConcepto);
+        // app.use('/gastos', routerGasto);
 
         app.listen(3000, () => {
             console.log('Server on port 3000');
@@ -24,6 +25,8 @@ AppDataSource.initialize()
     }).catch(error => console.log(error));
 
 
+
+    
 // AppDataSource.initialize().then(async () => {
 //     console.log("Base de datos inicializada correctamente");
 

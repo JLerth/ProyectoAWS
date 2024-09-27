@@ -1,8 +1,12 @@
-import optionRouter from './option.route'
-import { Cliente } from '../entity/Cliente'
+// import optionRouter from './cliente.route'
+import RouterCliente from './cliente.route'
+import RouterConcepto from './concepto.route'
+import RouterGasto from './gasto.route'
 
 
 export {
-    optionRouter,
-    Cliente
+    // optionRouter,
+    RouterCliente,
+    RouterConcepto,
+    RouterGasto
 }

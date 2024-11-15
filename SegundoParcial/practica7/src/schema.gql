@@ -1,0 +1,80 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cliente {
+  id: ID!
+  nombre: String!
+  identificacion: String!
+}
+
+type Concepto {
+  id: ID!
+  descripcion: String!
+}
+
+type Gasto {
+  id: ID!
+  fecha: DateTime!
+  hora: String!
+  valorGasto: Float!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  clientes: [Cliente!]!
+  cliente(id: String!): Cliente!
+  conceptos: [Concepto!]!
+  concepto(id: String!): Concepto!
+  gastos: [Gasto!]!
+  gasto(id: String!): Gasto!
+}
+
+type Mutation {
+  createCliente(createClienteInput: CreateClienteInput!): Cliente!
+  updateCliente(updateClienteInput: UpdateClienteInput!): Cliente!
+  removeCliente(id: String!): Cliente!
+  createConcepto(createConceptoInput: CreateConceptoInput!): Concepto!
+  updateConcepto(updateConceptoInput: UpdateConceptoInput!): Concepto!
+  removeConcepto(id: String!): Concepto!
+  createGasto(createGastoInput: CreateGastoInput!): Gasto!
+  updateGasto(updateGastoInput: UpdateGastoInput!): Gasto!
+  removeGasto(id: String!): Gasto!
+}
+
+input CreateClienteInput {
+  nombre: String!
+  identificacion: String!
+}
+
+input UpdateClienteInput {
+  nombre: String
+  identificacion: String
+  id: ID!
+}
+
+input CreateConceptoInput {
+  descripcion: String!
+}
+
+input UpdateConceptoInput {
+  descripcion: String
+  id: ID!
+}
+
+input CreateGastoInput {
+  fecha: DateTime!
+  hora: String!
+  valorGasto: Float!
+}
+
+input UpdateGastoInput {
+  fecha: DateTime
+  hora: String
+  valorGasto: Float
+  id: ID!
+}

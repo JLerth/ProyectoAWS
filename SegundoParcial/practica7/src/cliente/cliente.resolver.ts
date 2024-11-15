@@ -9,27 +9,27 @@ export class ClienteResolver {
   constructor(private readonly clienteService: ClienteService) {}
 
   @Mutation(() => Cliente)
-  createCliente(@Args('createClienteInput') createClienteInput: CreateClienteInput) {
+  createCliente(@Args('createClienteInput') createClienteInput: CreateClienteInput): Promise<Cliente> {
     return this.clienteService.create(createClienteInput);
   }
 
-  @Query(() => [Cliente], { name: 'cliente' })
-  findAll() {
+  @Query(() => [Cliente], { name: 'clientes' })
+  findAll(): Promise<Cliente[]> {
     return this.clienteService.findAll();
   }
 
   @Query(() => Cliente, { name: 'cliente' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Cliente> {
     return this.clienteService.findOne(id);
   }
 
   @Mutation(() => Cliente)
-  updateCliente(@Args('updateClienteInput') updateClienteInput: UpdateClienteInput) {
+  updateCliente(@Args('updateClienteInput') updateClienteInput: UpdateClienteInput): Promise<Cliente> {
     return this.clienteService.update(updateClienteInput.id, updateClienteInput);
   }
 
   @Mutation(() => Cliente)
-  removeCliente(@Args('id', { type: () => Int }) id: number) {
+  removeCliente(@Args('id', { type: () => String }) id: string): Promise<Cliente> {
     return this.clienteService.remove(id);
   }
 }

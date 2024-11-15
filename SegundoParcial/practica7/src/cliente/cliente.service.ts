@@ -1,26 +1,45 @@
 import { Injectable } from '@nestjs/common';
 import { CreateClienteInput } from './dto/create-cliente.input';
 import { UpdateClienteInput } from './dto/update-cliente.input';
+import { Cliente } from './entities/cliente.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class ClienteService {
-  create(createClienteInput: CreateClienteInput) {
-    return 'This action adds a new cliente';
+
+  constructor(
+    @InjectRepository(Cliente)
+    private readonly clienteRepository: Repository<Cliente>,
+  ){}
+
+  async create(createClienteInput: CreateClienteInput): Promise<Cliente> {
+    const created= this.clienteRepository.create(createClienteInput);
+    return await this.clienteRepository.save(created);
   }
 
-  findAll() {
-    return `This action returns all cliente`;
+  async findAll(): Promise<Cliente[]> {
+    return await this.clienteRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cliente`;
+  async findOne (id: string): Promise<Cliente> {
+    return await this.clienteRepository.findOneBy({id});
   }
 
-  update(id: number, updateClienteInput: UpdateClienteInput) {
-    return `This action updates a #${id} cliente`;
+  async update(id: string, updateClienteInput: UpdateClienteInput): Promise<Cliente> {
+    const updated= await this.clienteRepository.preload(updateClienteInput);
+    if (!updated){
+      throw new Error('No se encontro el cliente');
+    }
+    return await this.clienteRepository.save(updated)
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cliente`;
+  async remove(id: string): Promise<Cliente> {
+    const removed = await this.clienteRepository.findOne({where: {id}});
+    if (!removed){
+      throw new Error('No se encontro el cliente');
+    }
+    await this.clienteRepository.remove(removed);
+    return {...removed, id};
   }
 }
